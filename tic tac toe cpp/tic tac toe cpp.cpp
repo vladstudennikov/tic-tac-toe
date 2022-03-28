@@ -6,36 +6,35 @@ using namespace std;
 
 int main()
 {
-    char grid[9];
+    grid a;
     char grid_copy[9];
-    initialize_grid(grid);
-    int end = 0;
+    a.initialize_grid();
     do {
-        print_grid(grid);
-        if (grid_is_full(grid) != 1) {
-            player_choose_step(grid);
+        a.print_grid();
+        if (a.get_filled_squares() != 9) {
+            a.player_choose_step();
         }
-        if (game_is_over(grid, 'X') == 1) {
-            print_grid(grid);
+        if (a.game_is_over('X') == 1) {
+            a.print_grid();
             cout << "\nYou are the winner";
             return 0;
         }
 
-        if (grid_is_full(grid) != 1) {
-            computer_choose_step(grid, grid_copy);
+        if (a.get_filled_squares() != 9) {
+            computer_choose_step(a, grid_copy);
         }
-        
-        if (game_is_over(grid, 'O') == 1) {
-            print_grid(grid);
+
+        if (a.game_is_over('O') == 1) {
+            a.print_grid();
             cout << "\nComputer is a winner";
             return 0;
         }
 
-        if (grid_is_full(grid) == 1) {
-            print_grid(grid);
+        if (a.get_filled_squares() == 9) {
+            a.print_grid();
             cout << "\nThe board is full";
             return 0;
         }
-    } while (end != 1);
+    } while (true);
 }
 
