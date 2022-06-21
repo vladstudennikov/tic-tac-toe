@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     grid a;
-    char grid_copy[9];
+    grid grid_copy;
     a.initialize_grid();
     do {
         a.print_grid();
@@ -21,7 +21,7 @@ int main()
         }
 
         if (a.get_filled_squares() != 9) {
-            computer_choose_step(a, grid_copy);
+            a.computer_choose_step(grid_copy);
         }
 
         if (a.game_is_over('O') == 1) {

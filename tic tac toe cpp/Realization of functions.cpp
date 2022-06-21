@@ -4,9 +4,9 @@ using namespace std;
 
 #include "Functions.h"
 
-void grid::create_copy_of_grid(char* array_copy) {
+void grid::create_copy_of_grid(grid array_copy) {
     for (int i = 0; i < 9; i++) {
-        array_copy[i] = array[i];
+        array_copy.array[i] = array[i];
     }
 }
 
@@ -65,6 +65,21 @@ choose_step: cin >> step;
     else {
         cout << "\nThis cell is not empty, choose other step (1 - 9)\n";
         goto choose_step;
+    }
+}
+
+void grid::computer_choose_step(grid grid_copy)
+{
+    this->create_copy_of_grid(grid_copy);
+    for (int i = 0; i < 9; i++)
+    {
+        grid_copy.array[i] = 'O';
+        if (grid_copy.game_is_over('O'))
+        {
+            array[i] = 'O';
+            return;
+        }
+        grid_copy.array[i] = ' ';
     }
 }
 
